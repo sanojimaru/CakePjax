@@ -24,7 +24,7 @@ class PjaxComponent extends Component {
   }
 
   public function isPjaxRequest() {
-    if (isset($__SERVER['HTTP_X_PJAX']) && $__SERVER['HTTP_X_PJAX'] == true ||
+    if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true ||
         isset($this->C->request->query['_pjax']) && $this->C->request->query['_pjax'] == true) {
       return true;
     }
