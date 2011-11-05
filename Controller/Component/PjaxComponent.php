@@ -31,11 +31,19 @@ class PjaxComponent extends Component {
     return false;
   }
 
+/**
+ * !! WARNING !!
+ * This fucntion is deprecated.
+ */
   public function redirect($url) {
-    $new_url = Router::url($url);
-    $path = preg_replace('/'.str_replace('/', '\/', $this->C->base).'/', '', $new_url);
-    $html = $this->C->requestAction($path, array('return'));
-    $this->C->set(compact('new_url', 'html'));
-    $this->C->render(APP.'plugins'.DS.'pjax'.DS.'views'.DS.'elements'.DS.'redirect_pjax_to.ctp');
+    if ($this->isPjaxRequest() && $this->C->request->is('post')) {
+      $newUrl = Router::url($url);
+      $path = preg_replace('/'.str_replace('/', '\/', $this->C->base).'/', '', $newUrl);
+      $html = $this->C->requestAction($path, array('return'));
+      $this->C->set(compact('newUrl', 'html'));
+      $this->C->render(APP.'Plugin'.DS.'Pjax'.DS.'View'.DS.'Elements'.DS.'redirect_pjax_to.ctp');
+    } else {
+      $this->C->redirect($url);
+    }
   }
 }
