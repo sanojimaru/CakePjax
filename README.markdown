@@ -6,25 +6,25 @@ Integrate Chris Wanstrath's [PJAX](https://github.com/defunkt/jquery-pjax) into 
 
 Add submodule to your project.
 
-`
+``
 git submodule add git@github.com:sanojimaru/CakePjax.git app/Plugin/Pjax
-`
+``
 
 And modify  your AppController.
 
-`
+``
 <?php
 class AppController extends Controller {
   public $helpers = array('Pjax.Pjax');
   public $uses = array('Pjax.Pjax');
 }
-`
+``
 
 All links that match `$('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])')` will then use PJAX.
 The PJAX container has to be marked with data-pjax-container attribute, so for example:
 
 
-`
+``
 <html>
   <head>
     <?php echo $this->Html->charset(); ?>
@@ -49,10 +49,11 @@ The PJAX container has to be marked with data-pjax-container attribute, so for e
     </div>
   </body>
 </html>
-`
+``
 
 ## Examples for PjaxComponent::redirect
 
+``
 class PostsController extends AppController {
   public function view($id = null) {
     if (!$id) {
@@ -62,6 +63,7 @@ class PostsController extends AppController {
     $this->set('post', $this->Post->read(null, $id));
   }
 }
+``
 
 ## Demo
 
